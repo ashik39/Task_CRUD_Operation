@@ -2,7 +2,7 @@ import React from 'react';
 
 const SelectField = ({
   name = '',
-  data = [],
+  options = [],
   setvalue,
   placeholder = '',
   label = '',
@@ -44,8 +44,8 @@ const SelectField = ({
       )}
       <select name={name} onChange={(e) => handleChange(e)} {...attributes}>
         <option value="">{placeholder}</option>
-        {data &&
-          data.map((option) => (
+        {options &&
+          options.map((option) => (
             <option value={option.value} key={option.value}>
               {option.name}
             </option>

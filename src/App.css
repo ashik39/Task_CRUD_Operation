@@ -48,6 +48,39 @@
   margin: auto;
 }
 
+.data-list {
+  background-color: rgb(24, 219, 226);
+  border-radius: 20px;
+  width: auto;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.data-container-each {
+  border: 2px solid black;
+  display: inline-flex;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+}
+.Header {
+  /* display: inline-flex; */
+  font-size: larger;
+  padding: 20px;
+  margin: 30px;
+  background-color: black;
+  border-radius: 20px;
+  color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.body-style {
+  justify-content: center;
+}
+.create {
+  width: 70%;
+  padding-left: 350px;
+}
 .myForm {
   width: 100%;
   background-color: #dfe6e9;
