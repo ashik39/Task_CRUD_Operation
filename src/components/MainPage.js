@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Create from './Create';
-
+import DetailsList from './DetailsList';
+import Edit from './Edit';
 function Main_Page() {
   const [details, setDetails] = useState([]);
   const [display, setDisplay] = useState('');
+  const [defaultValue, setDefaultvalue] = useState({});
   const handleAdd = () => {
     setDisplay('create');
   };
@@ -15,11 +17,21 @@ function Main_Page() {
     console.log('details', details);
   };
 
-  // const handleRemove = (i) => {
-  //   let data = [];
-  //   data = details.splice(i, 1);
-  //   setDetails(data);
-  // };
+  const handleRemove = (i) => {
+    console.log('Index :', i);
+    details.splice(i, 1);
+    setDetails(details);
+    console.log('AFter Remove:', details);
+  };
+
+  const handleEdit = (edit, i) => {
+    let data = details[i];
+    console.log('edit Data', data);
+    setDisplay(edit);
+    setDefaultvalue(data);
+  };
+
+  const updateData = () => {};
   return (
     <div>
       <div className="Header">
@@ -37,30 +49,16 @@ function Main_Page() {
         )}
         {display === 'edit' && (
           <div>
-            <h2>Edit</h2>
+            <Edit defaultValue={defaultValue} updateData={updateData} />
           </div>
         )}
         {display === 'data' && (
           <div className="data-list">
-            {details &&
-              details.map((detail, i) => (
-                <div className="data-container-each">
-                  <li key={i} className="myList">
-                    {i + 1}. <b>NAME :</b> {detail.name.toUpperCase()},{' '}
-                    <b>GENDER :</b> {detail.gender.toUpperCase()},{' '}
-                    <b>LOCATION :</b> {detail.select.toUpperCase()}
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <button
-                      className="btn btn-warning"
-                      // onClick={() => handleRemove(i)}
-                    >
-                      Remove{' '}
-                    </button>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <button className="btn btn-danger">Edit </button>
-                  </li>
-                </div>
-              ))}
+            <DetailsList
+              details={details}
+              handleRemove={handleRemove}
+              handleEdit={handleEdit}
+            />
           </div>
         )}
       </div>

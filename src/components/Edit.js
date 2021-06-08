@@ -4,7 +4,7 @@ import Input from './Form/Input';
 import Select from './Form/Select';
 import Radio from './Form/Radio';
 
-function Create({ getData }) {
+function Create({ defaultValue, updateData }) {
   const radioButtonOptions = ['Male', 'Female', 'Other'];
   const selectDataOptions = [
     {
@@ -27,7 +27,7 @@ function Create({ getData }) {
   const { register, handleSubmit, errors } = useForm();
   const submitButton = (data) => {
     console.log('data:', data);
-    getData(data);
+    updateData(data);
   };
   return (
     <div className="create">
@@ -38,6 +38,7 @@ function Create({ getData }) {
             label="Name"
             placeholder="Enter name"
             name="name"
+            defaultValue={defaultValue.name}
             register={register({
               required: 'The name field is required.',
             })}
@@ -50,6 +51,7 @@ function Create({ getData }) {
             label="ID"
             placeholder="Enter ID"
             name="id"
+            defaultValue={defaultValue.id}
             register={register({
               required: 'The ID field is required.',
             })}
@@ -61,6 +63,7 @@ function Create({ getData }) {
             options={selectDataOptions}
             name="select"
             label="Location"
+            defaultValue={defaultValue.select}
             placeholder="Select location"
             register={register({
               required: 'The name field is required.',
@@ -73,6 +76,7 @@ function Create({ getData }) {
             name="gender"
             label="Gender"
             options={radioButtonOptions}
+            defaultChecked={defaultValue.gender}
             register={register({
               required: 'The gender field is required.',
             })}
