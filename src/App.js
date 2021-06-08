@@ -1,23 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
-
+import Input from './components/Form/Input';
+import Select from './components/Form/Select';
+import Radio from './components/Form/Radio';
 function App() {
+  const radioButtonData = ['Male', 'Female', 'Other'];
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        <form>
+          <div>
+            <Input label="Name" placeholder="Enter your name" />
+          </div>
+          <div>
+            <Select label="Location" placeholder="Select your location" />
+          </div>
+          <div>
+            <Radio
+              name="Gender"
+              label="Choose your gender"
+              options={radioButtonData}
+            />
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
