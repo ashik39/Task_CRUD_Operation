@@ -29,7 +29,7 @@ const TextField = ({
 
   const handleChange = (e) => {
     if (setvalue) {
-      setvalue(e.target.value);
+      setvalue(e);
     }
     return null;
   };

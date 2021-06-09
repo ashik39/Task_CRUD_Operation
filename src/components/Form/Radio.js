@@ -30,7 +30,7 @@ const RadioButtonField = ({
 
   const handleChange = (e) => {
     if (setvalue) {
-      setvalue(e.target.value);
+      setvalue(e);
     }
     setValue(true);
     return null;
@@ -59,7 +59,7 @@ const RadioButtonField = ({
               &nbsp;&nbsp;
               {option && (
                 <label for={option}>
-                  <h4>{option}</h4>
+                  <h5>{option}</h5>
                 </label>
               )}
             </div>
@@ -77,7 +77,7 @@ const RadioButtonField = ({
               &nbsp;&nbsp;
               {name && (
                 <label for={option}>
-                  <h3>{option}</h3>
+                  <h5>{option}</h5>
                 </label>
               )}
             </div>

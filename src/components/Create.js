@@ -1,5 +1,8 @@
+import React, { useState, useContext } from 'react';
+import { GlobalContext } from '../context/GlobalState';
+import { v4 as uuid } from 'uuid';
+import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import React from 'react';
 import Input from './Form/Input';
 import Select from './Form/Select';
 import Radio from './Form/Radio';
@@ -24,13 +27,26 @@ function Create({ getData }) {
       name: 'Others',
     },
   ];
+  const history = useHistory();
+  const { addUser } = useContext(GlobalContext);
   const { register, handleSubmit, errors } = useForm();
+
   const submitButton = (data) => {
-    console.log('data:', data);
-    getData(data);
+    const newUser = {
+      id: uuid(),
+      name: data.name,
+      phone: data.phone,
+      select: data.select,
+      gender: data.gender,
+    };
+    addUser(newUser);
+    history.push('/');
   };
+
   return (
     <div className="create">
+      <h2>Create</h2>
+      <hr />
       <form onSubmit={handleSubmit(submitButton)}>
         <div>
           <Input
@@ -47,11 +63,11 @@ function Create({ getData }) {
         <div>
           <Input
             type="number"
-            label="ID"
-            placeholder="Enter ID"
-            name="id"
+            label="Phone Number"
+            placeholder="Enter Phone Number"
+            name="phone"
             register={register({
-              required: 'The ID field is required.',
+              required: 'The Phone Number field is required.',
             })}
             errors={errors}
           />
@@ -79,13 +95,14 @@ function Create({ getData }) {
             errors={errors}
           />
         </div>
+        <br />
         <button type="submit" className="btn btn-success">
           Submit
         </button>
         &nbsp;&nbsp;
-        <button type="submit" className="btn btn-danger">
+        <Link to="/" className="btn btn-danger">
           Cancel
-        </button>
+        </Link>
       </form>
     </div>
   );
