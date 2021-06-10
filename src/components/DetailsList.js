@@ -3,16 +3,20 @@ import { GlobalContext } from '../context/GlobalState';
 import { Link } from 'react-router-dom';
 
 function DetailsList() {
-  const { users, removeUser } = useContext(GlobalContext);
+  const { users, removeUser, currentPage, postsPerPage } =
+    useContext(GlobalContext);
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = users.slice(indexOfFirstPost, indexOfLastPost);
   return (
     <div>
       <div>
         {users.length > 0 ? (
           <>
-            {users.map((detail, i) => (
+            {currentPosts.map((detail, i) => (
               <div className="data-container-each">
                 <li key={detail.id} className="myList">
-                  {i + 1}. <b>NAME :</b> {detail.name.toUpperCase()},
+                  <b>{i + 1}</b>. <b>NAME :</b> {detail.name.toUpperCase()},
                   <b>LOCATION :</b>
                   {detail.select.toUpperCase()}, <b>GENDER :</b>{' '}
                   {detail.gender.toUpperCase()}, <b>PHONE NUMBER :</b>{' '}

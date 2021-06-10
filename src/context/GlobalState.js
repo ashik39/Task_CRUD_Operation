@@ -1,19 +1,20 @@
 import React, { createContext, useReducer } from 'react';
+import { useState } from 'react';
 import AppReducer from './AppReducer';
 
-// Initial State
 const initialState = {
   users: [],
 };
 
-// Create Context
 export const GlobalContext = createContext(initialState);
 
-// Provider Component
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(3);
 
-  // Actions
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   const removeUser = (id) => {
     dispatch({
       type: 'REMOVE_USER',
@@ -39,6 +40,9 @@ export const GlobalProvider = ({ children }) => {
     <GlobalContext.Provider
       value={{
         users: state.users,
+        currentPage,
+        postsPerPage,
+        paginate,
         removeUser,
         addUser,
         editUser,
